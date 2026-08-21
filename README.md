@@ -1,6 +1,8 @@
    #                                                       BudgetBuddy-Infosys-Springboard 7.0
 
+
 <img width="1113" height="224" alt="infosys_springboard_logo" src="https://github.com/user-attachments/assets/e6c3148d-176a-4b3a-b79e-83e95e0d94b7" />
+
 
 <img width="1536" height="1024" alt="ChatGPT Image Aug 21, 2026, 09_19_39 AM" src="https://github.com/user-attachments/assets/0fbd9225-9615-483e-a87a-ccc0ecfeaa9b" />
 
