@@ -1,4 +1,4 @@
-                                              # BudgetBuddy-Infosys-Springboard 7.0
+   #                                                       BudgetBuddy-Infosys-Springboard 7.0
 
 <img width="1113" height="224" alt="infosys_springboard_logo" src="https://github.com/user-attachments/assets/e6c3148d-176a-4b3a-b79e-83e95e0d94b7" />
 
