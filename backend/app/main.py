@@ -69,7 +69,7 @@ app.include_router(dashboard_router)
 app.include_router(income_router)
 
 # Authentication routes
-app.include_router(auth_router, prefix="/auth")
+app.include_router(auth_router)
 app.include_router(oauth_router)
 
 app.include_router(expense_router)
