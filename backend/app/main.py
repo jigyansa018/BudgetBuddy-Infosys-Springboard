@@ -28,9 +28,9 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware, 
-    allow_origins=["http://localhost:5173",
-    "https://budgetbuddy-dashboard-jnztol8t0-budget-buddy-project.vercel.app"
-    ],
+    allow_origins = ["https://budgetbuddy-dashboard-jnztol8t0-budget-buddy-project.vercel.app",
+        ]
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
