@@ -12,7 +12,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Layout from "./pages/Layout/Layout";
 
-import OAuthCallback from "./pages/OauthCallback";
+import OAuthCallback from "./pages/OAuthCallback";
 import Notification from "./component/Notification/Notification";
 import Expense from "./component/Expense/Expense";
 import Income from "./component/Income/Income";
