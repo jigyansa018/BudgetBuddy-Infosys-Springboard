@@ -1,0 +1,425 @@
+/* ---------------------------------------------------------
+   BudgetBuddy Sidebar
+   Palette lifted from your login/register screens:
+   deep forest green + lime accent, Fraunces for the
+   wordmark, IBM Plex Mono for nav labels (matches the
+   "Email" / "Password" / balance mono type you already use).
+--------------------------------------------------------- */
+
+:root {
+  --bb-green-900: #0d2818;
+  --bb-green-950: #09190f;
+  --bb-lime: #c6ff4a;
+  --bb-lime-dim: #9fd93a;
+  --bb-text: #eef3ec;
+  --bb-text-muted: #8fa392;
+  --bb-border: rgba(255, 255, 255, 0.08);
+
+  --bb-sidebar-w: 248px;
+  --bb-sidebar-w-collapsed: 76px;
+  --bb-topbar-h: 56px;
+}
+
+/* ---------- Shell ---------- */
+
+.bb-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bb-cream, #f4f1ea);
+}
+
+.bb-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bb-main-content {
+  flex: 1;
+  padding: 24px;
+}
+
+/* ---------- Mobile top bar ---------- */
+
+.bb-topbar {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  height: var(--bb-topbar-h);
+  padding: 0 16px;
+  background: var(--bb-green-900);
+  color: var(--bb-text);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.bb-topbar-logo {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.bb-topbar-logo span {
+  color: var(--bb-lime);
+}
+
+.bb-hamburger {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--bb-border);
+  background: transparent;
+  color: var(--bb-text);
+  cursor: pointer;
+}
+
+.bb-hamburger:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Sidebar ---------- */
+
+.bb-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 230px;
+  height: 100vh;
+
+  z-index: 1000;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+
+  background: #062b19;
+}
+
+
+.bb-sidebar.is-collapsed {
+  width: 72px;
+}
+
+.bb-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--bb-border);
+  min-height: 64px;
+}
+
+.bb-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.bb-logo-mark {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--bb-lime);
+  color: var(--bb-green-950);
+  display: grid;
+  place-items: center;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.bb-logo-text {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.bb-logo-text span {
+  color: var(--bb-lime);
+}
+
+.bb-sidebar.is-collapsed .bb-logo-text {
+  display: none;
+}
+
+/* Desktop collapse toggle: chevron pill on the edge, like the reference */
+.bb-collapse-btn {
+  position: absolute;
+  top: 68px;
+  right: -14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--bb-lime);
+  color: var(--bb-green-950);
+  border: 3px solid var(--bb-cream, #f4f1ea);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+
+@media (min-width: 900px) {
+  .bb-collapse-btn {
+    display: flex;
+  }
+}
+
+.bb-collapse-btn svg {
+  transition: transform 0.18s ease;
+}
+
+.bb-sidebar.is-collapsed .bb-collapse-btn svg {
+  transform: rotate(180deg);
+}
+
+/* ---------- Nav ---------- */
+
+.bb-nav {
+  flex: 1;
+  padding: 16px 10px;
+  overflow-y: auto;
+}
+
+.bb-nav-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--bb-text-muted);
+  padding: 0 10px;
+  margin-bottom: 8px;
+}
+
+.bb-sidebar.is-collapsed .bb-nav-label {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.bb-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 2px;
+  border-radius: 10px;
+  color: var(--bb-text-muted);
+  text-decoration: none;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.86rem;
+  position: relative;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bb-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--bb-text);
+}
+
+.bb-nav-item.is-active {
+  background: rgba(198, 255, 74, 0.12);
+  color: var(--bb-lime);
+}
+
+.bb-nav-item.is-active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--bb-lime);
+}
+
+.bb-nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.bb-sidebar.is-collapsed .bb-nav-item {
+  justify-content: center;
+  padding: 10px;
+}
+
+.bb-sidebar.is-collapsed .bb-nav-text {
+  display: none;
+}
+
+/* ---------- Footer / user ---------- */
+
+.bb-sidebar-footer {
+  border-top: 1px solid var(--bb-border);
+  padding: 14px 12px;
+}
+
+.bb-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bb-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--bb-lime);
+  color: var(--bb-green-950);
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bb-user-info {
+  min-width: 0;
+}
+
+.bb-user-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--bb-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bb-user-email {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--bb-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bb-sidebar.is-collapsed .bb-user-info {
+  display: none;
+}
+
+.bb-signout {
+  margin-top: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--bb-border);
+  background: transparent;
+  color: var(--bb-text-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.bb-signout:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--bb-text);
+}
+
+.bb-sidebar.is-collapsed .bb-signout {
+  text-align: center;
+}
+
+/* ---------- Responsive: off-canvas drawer on mobile ---------- */
+
+.bb-backdrop {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .bb-topbar {
+    display: flex;
+  }
+
+  .bb-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    width: 260px;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+  }
+
+  .bb-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .bb-sidebar.is-collapsed {
+    width: 260px; /* collapse is a desktop-only concept */
+  }
+
+  .bb-sidebar.is-collapsed .bb-nav-text,
+  .bb-sidebar.is-collapsed .bb-logo-text,
+  .bb-sidebar.is-collapsed .bb-user-info {
+    display: block;
+  }
+
+  .bb-sidebar.is-collapsed .bb-user-info {
+    display: block;
+  }
+
+  .bb-collapse-btn {
+    display: none;
+  }
+
+  .bb-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .bb-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .bb-main-content {
+    padding: 16px;
+  }
+}
+
+/* =========================================================
+   UNREAD NOTIFICATION DOT
+   ========================================================= */
+
+.notification-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  vertical-align: middle;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+}

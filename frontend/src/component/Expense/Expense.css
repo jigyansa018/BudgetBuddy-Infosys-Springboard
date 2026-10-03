@@ -1,0 +1,218 @@
+/* ================================
+   BudgetBuddy - Expense Page
+   ================================ */
+
+.expense-page {
+  min-height: 100vh;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #071d1f, #103518, #18284a);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Animated background blobs */
+.expense-page::before,
+.expense-page::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+  animation: floatBlob 8s ease-in-out infinite alternate;
+}
+
+.expense-page::before {
+  background: #00c6ff;
+  top: -100px;
+  left: -100px;
+}
+
+.expense-page::after {
+  background: #7b2ff7;
+  bottom: -120px;
+  right: -100px;
+  animation-delay: 2s;
+}
+
+.expense-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+  animation: formAppear 0.8s ease forwards;
+}
+
+.expense-card {
+  padding: 35px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+.expense-title {
+  text-align: center;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.expense-subtitle {
+  text-align: center;
+  margin-bottom: 28px;
+  color: #b9c8df;
+  font-size: 14px;
+}
+
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expense-form label {
+  color: #dce7f7;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.expense-form input,
+.expense-form select,
+.expense-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  outline: none;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    background 0.3s ease;
+}
+
+.expense-form input::placeholder,
+.expense-form textarea::placeholder {
+  color: #9eacc2;
+}
+
+.expense-form input:focus,
+.expense-form select:focus,
+.expense-form textarea:focus {
+  border-color: #4cc9f0;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.12);
+  transform: translateY(-2px);
+}
+
+.expense-form select option {
+  color: #111827;
+  background: #ffffff;
+}
+
+.expense-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.expense-submit {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00b4db, #0083b0);
+  box-shadow: 0 10px 25px rgba(0, 180, 219, 0.25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.expense-submit:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 15px 35px rgba(0, 180, 219, 0.4);
+}
+
+.expense-submit:active {
+  transform: scale(0.98);
+}
+
+.expense-message {
+  margin-top: 18px;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  color: #dff6ff;
+  background: rgba(76, 201, 240, 0.1);
+  border: 1px solid rgba(76, 201, 240, 0.25);
+  animation: messageAppear 0.4s ease;
+}
+
+/* Animations */
+
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatBlob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(45px, -25px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-25px, 35px) scale(0.95);
+  }
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .expense-page {
+    padding: 25px 15px;
+  }
+
+  .expense-card {
+    padding: 25px 20px;
+  }
+
+  .expense-title {
+    font-size: 26px;
+  }
+}

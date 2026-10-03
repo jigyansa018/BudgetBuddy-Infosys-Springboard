@@ -1,0 +1,86 @@
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.bb-layout {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f2eb;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.bb-main {
+  box-sizing: border-box;
+  width: calc(100% - 230px);
+  min-height: 100vh;
+  margin-left: 230px;
+  overflow-x: hidden;
+  background: #f5f2eb;
+  transition:
+    width 0.25s ease,
+    margin-left 0.25s ease;
+}
+
+/* When sidebar is collapsed */
+.bb-main.sidebar-collapsed {
+  width: calc(100% - 72px);
+  margin-left: 72px;
+}
+
+/* ============================================================
+   MOBILE MENU BUTTON
+   ============================================================ */
+
+.bb-mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 1100;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #b7ef4d;
+  color: #17351f;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+
+@media (min-width: 769px) {
+  .bb-main {
+    min-height: 100vh;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .bb-main,
+  .bb-main.sidebar-collapsed {
+    width: 100%;
+    margin-left: 0;
+    min-height: 100vh;
+  }
+
+  .bb-mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,690 @@
+/* =========================================================
+   SAVINGS PAGE
+   ========================================================= */
+
+.sav-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  box-sizing: border-box;
+  color: #1f2937;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.sav-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.sav-title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.sav-subtitle {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.sav-add-btn {
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: #ffffff;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.sav-add-btn:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+.sav-add-btn:active {
+  transform: translateY(0);
+}
+
+.sav-add-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sav-btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.sav-cancel-btn {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #374151;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.sav-cancel-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+
+/* =========================================================
+   ERROR / RETRY BANNER
+   ========================================================= */
+
+.sav-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 20px;
+  padding: 12px 16px;
+
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+
+  background: #fef2f2;
+  color: #991b1b;
+
+  font-size: 14px;
+}
+
+.sav-retry {
+  border: none;
+  background: transparent;
+  color: #991b1b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sav-retry:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   CREATE GOAL FORM
+   ========================================================= */
+
+.sav-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  margin-bottom: 24px;
+  padding: 20px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+}
+
+.sav-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sav-form-label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sav-form-input {
+  width: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #111827;
+
+  padding: 10px 12px;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.sav-form-input:focus {
+  border-color: #6b7280;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.12);
+}
+
+.sav-form-input::placeholder {
+  color: #9ca3af;
+}
+
+.sav-error {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   OVERALL SAVINGS
+   ========================================================= */
+
+.sav-overview {
+  margin-bottom: 28px;
+  padding: 22px 24px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.sav-overview-label {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: lowercase;
+}
+
+.sav-overview-value {
+  font-size: 27px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sav-overview-target {
+  color: #9ca3af;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   SAVINGS GRID
+   ========================================================= */
+
+.sav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+
+/* =========================================================
+   SAVINGS CARD
+   ========================================================= */
+
+.sav-card {
+  min-width: 0;
+  padding: 20px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.sav-card:hover {
+  transform: translateY(-2px);
+  border-color: #d1d5db;
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.sav-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  min-height: 42px;
+  margin-bottom: 20px;
+}
+
+.sav-card-name {
+  min-width: 0;
+
+  color: #111827;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+.sav-card-due {
+  flex-shrink: 0;
+
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PROGRESS RING
+   ========================================================= */
+
+.sav-ring-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  margin-bottom: 20px;
+}
+
+.sav-ring {
+  --sav-pct: 0;
+
+  position: relative;
+
+  width: 112px;
+  height: 112px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      #111827 calc(var(--sav-pct) * 1%),
+      #e5e7eb 0
+    );
+}
+
+.sav-ring::before {
+  content: "";
+
+  position: absolute;
+  inset: 9px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+.sav-ring-pct {
+  position: relative;
+  z-index: 1;
+
+  color: #111827;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.sav-amounts {
+  min-width: 0;
+}
+
+.sav-saved {
+  color: #111827;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.sav-target {
+  margin-top: 4px;
+
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sav-amounts > div:last-child {
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   CARD ACTIONS
+   ========================================================= */
+
+.sav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid #f0f0f0;
+}
+
+.sav-action {
+  flex: 1;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #374151;
+
+  padding: 8px 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.sav-action:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.sav-action-danger {
+  color: #b91c1c;
+}
+
+.sav-action-danger:hover {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+
+/* =========================================================
+   INLINE ADD / EDIT / DELETE PANEL
+   ========================================================= */
+
+.sav-inline-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: 16px;
+  padding-top: 16px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.sav-inline-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sav-confirm-delete {
+  gap: 14px;
+}
+
+.sav-confirm-text {
+  margin: 0;
+
+  color: #374151;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.sav-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 250px;
+
+  padding: 40px;
+
+  border: 1px dashed #d1d5db;
+  border-radius: 14px;
+
+  background: #ffffff;
+}
+
+.sav-empty-icon {
+  margin-bottom: 12px;
+  font-size: 42px;
+}
+
+
+/* =========================================================
+   LOADING SKELETON
+   ========================================================= */
+
+.sav-skeleton {
+  min-height: 230px;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.sav-skel-line {
+  height: 18px;
+
+  border-radius: 6px;
+
+  background: #e5e7eb;
+
+  animation: sav-pulse 1.4s ease-in-out infinite;
+}
+
+.sav-skel-w60 {
+  width: 60%;
+}
+
+.sav-skel-ring {
+  width: 112px;
+  height: 112px;
+
+  margin: 30px auto 0;
+
+  border-radius: 50%;
+
+  background: #e5e7eb;
+
+  animation: sav-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes sav-pulse {
+  0% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.55;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .sav-page {
+    padding: 24px;
+  }
+
+  .sav-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .sav-page {
+    padding: 18px;
+  }
+
+  .sav-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sav-add-btn {
+    width: 100%;
+  }
+
+  .sav-title {
+    font-size: 27px;
+  }
+
+  .sav-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sav-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sav-ring-row {
+    gap: 18px;
+  }
+
+  .sav-card {
+    padding: 18px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .sav-page {
+    padding: 14px;
+  }
+
+  .sav-overview {
+    padding: 18px;
+  }
+
+  .sav-overview-value {
+    font-size: 24px;
+  }
+
+  .sav-ring {
+    width: 96px;
+    height: 96px;
+  }
+
+  .sav-ring::before {
+    inset: 8px;
+  }
+
+  .sav-ring-pct {
+    font-size: 19px;
+  }
+
+  .sav-saved {
+    font-size: 19px;
+  }
+
+  .sav-card-top {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .sav-card-due {
+    white-space: normal;
+  }
+
+  .sav-actions {
+    flex-wrap: wrap;
+  }
+
+  .sav-action {
+    min-width: calc(50% - 4px);
+  }
+
+  .sav-action-danger {
+    flex: 1 0 100%;
+  }
+
+  .sav-completed {
+  margin-top: 12px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: #edf8df;
+  color: #35651f;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+}

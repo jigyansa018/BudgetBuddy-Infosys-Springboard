@@ -1,0 +1,132 @@
+.iec-card {
+  min-width: 0;
+  min-height: 450px;
+  padding: 23px;
+  border: 1px solid #e3e9e4;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 7px 24px rgba(12, 42, 25, 0.055);
+}
+
+.iec-header {
+  margin-bottom: 10px;
+}
+
+.iec-kicker {
+  display: block;
+  margin-bottom: 4px;
+  color: #75927f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.iec-header h2 {
+  margin: 0;
+  color: #0b2417;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.iec-header p {
+  margin: 6px 0 0;
+  color: #7a877f;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.iec-chart {
+  width: 100%;
+  height: 345px;
+  margin-top: 10px;
+}
+
+.iec-tooltip {
+  min-width: 165px;
+  padding: 12px 14px;
+  border: 1px solid #e1e8e2;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(10, 30, 18, 0.12);
+}
+
+.iec-tooltip-title {
+  margin-bottom: 9px;
+  color: #173222;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.iec-tooltip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 6px;
+  color: #68776e;
+  font-size: 12px;
+}
+
+.iec-tooltip-row strong {
+  color: #12291c;
+}
+
+.iec-state {
+  min-height: 345px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  color: #77847d;
+  font-size: 13px;
+}
+
+.iec-state strong {
+  color: #263b2e;
+  font-size: 14px;
+}
+
+.iec-empty-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  border-radius: 50%;
+  background: #f0f5f1;
+  color: #789082;
+  font-size: 24px;
+}
+
+.iec-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #dfe9e1;
+  border-top-color: #719d50;
+  border-radius: 50%;
+  animation: iec-spin 0.8s linear infinite;
+}
+
+@keyframes iec-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .iec-card {
+    min-height: 400px;
+    padding: 18px;
+  }
+
+  .iec-chart {
+    height: 300px;
+  }
+
+  .iec-state {
+    min-height: 300px;
+  }
+}

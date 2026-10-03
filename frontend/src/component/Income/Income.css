@@ -1,0 +1,218 @@
+/* ================================
+   BudgetBuddy - Income Page
+   ================================ */
+
+.income-page {
+  min-height: 100vh;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #081c15, #103c2e, #174d3c);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Animated background blobs */
+.income-page::before,
+.income-page::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.3;
+  animation: incomeBlob 9s ease-in-out infinite alternate;
+}
+
+.income-page::before {
+  background: #00f5a0;
+  top: -100px;
+  left: -100px;
+}
+
+.income-page::after {
+  background: #00c9a7;
+  bottom: -120px;
+  right: -100px;
+  animation-delay: 2s;
+}
+
+.income-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+  animation: incomeAppear 0.8s ease forwards;
+}
+
+.income-card {
+  padding: 35px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+.income-title {
+  text-align: center;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.income-subtitle {
+  text-align: center;
+  margin-bottom: 28px;
+  color: #b8dfd0;
+  font-size: 14px;
+}
+
+.income-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.income-form label {
+  color: #dff8ee;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.income-form input,
+.income-form select,
+.income-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  outline: none;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    background 0.3s ease;
+}
+
+.income-form input::placeholder,
+.income-form textarea::placeholder {
+  color: #9cbeb2;
+}
+
+.income-form input:focus,
+.income-form select:focus,
+.income-form textarea:focus {
+  border-color: #00f5a0;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(0, 245, 160, 0.1);
+  transform: translateY(-2px);
+}
+
+.income-form select option {
+  color: #111827;
+  background: #ffffff;
+}
+
+.income-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.income-submit {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #062018;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00f5a0, #00d084);
+  box-shadow: 0 10px 25px rgba(0, 245, 160, 0.2);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.income-submit:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 15px 35px rgba(0, 245, 160, 0.35);
+}
+
+.income-submit:active {
+  transform: scale(0.98);
+}
+
+.income-message {
+  margin-top: 18px;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  color: #ddfff1;
+  background: rgba(0, 245, 160, 0.08);
+  border: 1px solid rgba(0, 245, 160, 0.2);
+  animation: messageAppear 0.4s ease;
+}
+
+/* Animations */
+
+@keyframes incomeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes incomeBlob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-35px, 30px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(30px, -25px) scale(0.95);
+  }
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .income-page {
+    padding: 25px 15px;
+  }
+
+  .income-card {
+    padding: 25px 20px;
+  }
+
+  .income-title {
+    font-size: 26px;
+  }
+}
