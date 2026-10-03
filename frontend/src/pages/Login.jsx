@@ -1,14 +1,16 @@
 
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = (import.meta.env.VITE_API_URL || "")
-                .trim()
-                .replace(/\/+$/, "");
+  .trim()
+  .replace(/\/+$/, "");
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,7 +19,9 @@ export default function Login() {
     setError("");
 
     if (!API_URL) {
-      setError("API URL is not configured. Please check VITE_API_URL.");
+      setError(
+        "API URL is not configured. Check VITE_API_URL in Vercel."
+      );
       return;
     }
 
@@ -25,11 +29,10 @@ export default function Login() {
 
     try {
       const body = new URLSearchParams();
-      body.append("username", email);
+      body.append("username", email.trim());
       body.append("password", password);
 
-      const response = await 
-      fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -51,25 +54,30 @@ export default function Login() {
         throw new Error(message);
       }
 
-      // Support common FastAPI token response formats.
       const token = data.access_token || data.token;
 
-      if (token) {
-        localStorage.setItem("access_token", token);
+      if (!token) {
+        throw new Error(
+          "The server responded successfully but did not return an access token."
+        );
       }
 
-      // Save user information only if the backend returns it.
+      // Use the same key that RequireAuth checks.
+      localStorage.setItem("access_token", token);
+
+      // Remove an older token to avoid conflicting sessions.
+      localStorage.removeItem("token");
+
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
       }
 
-      // If your backend returns a different response format,
-      // adjust this section to match it.
-      window.location.href = "/dashboard";
+      // Navigate to an actual route defined in App.jsx.
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       setError(
         err.message === "Failed to fetch"
-          ? "Could not connect to the server. Check the backend URL, CORS settings, and Render deployment."
+          ? "Cannot connect to the backend. Check the API URL, backend CORS settings, and Render deployment."
           : err.message || "Something went wrong during login."
       );
     } finally {
@@ -77,22 +85,13 @@ export default function Login() {
     }
   };
 
-  const handleGoogleLogin = () => {
+  const handleSocialLogin = (provider) => {
     if (!API_URL) {
-      setError("API URL is not configured.");
+      setError("API URL is not configured. Check VITE_API_URL.");
       return;
     }
 
-    window.location.href = `${API_URL}/auth/google/login`;
-  };
-
-  const handleGithubLogin = () => {
-    if (!API_URL) {
-      setError("API URL is not configured.");
-      return;
-    }
-
-    window.location.href = `${API_URL}/auth/github/login`;
+    window.location.assign(`${API_URL}/auth/${provider}/login`);
   };
 
   return (
@@ -140,18 +139,23 @@ export default function Login() {
         </form>
 
         <div className="social-login">
-          <button type="button" onClick={handleGoogleLogin}>
+          <button
+            type="button"
+            onClick={() => handleSocialLogin("google")}
+          >
             Continue with Google
           </button>
 
-          <button type="button" onClick={handleGithubLogin}>
+          <button
+            type="button"
+            onClick={() => handleSocialLogin("github")}
+          >
             Continue with GitHub
           </button>
         </div>
 
         <p>
-          Don't have an account?{" "}
-          <a href="/register">Register</a>
+          Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>

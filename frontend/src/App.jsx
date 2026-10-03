@@ -1,3 +1,4 @@
+
 import {
   BrowserRouter,
   Routes,
@@ -22,30 +23,23 @@ import Analytics from "./component/Analytics/Analytics";
 import Invoices from "./component/Invoices/Invoices";
 import HomePage from "./component/HomePage/HomePage";
 
-/* =========================================================
-   AUTHENTICATION GUARD
-   ========================================================= */
-
 function RequireAuth() {
-  const token = localStorage.getItem("token");
+  const token =
+    localStorage.getItem("access_token") ||
+    localStorage.getItem("token");
+
   const navigate = useNavigate();
 
-  console.log("RequireAuth: token exists =", !!token);
-
   if (!token) {
-    console.log(
-      "RequireAuth: NO TOKEN -> redirecting to /login"
-    );
-
     return <Navigate to="/login" replace />;
   }
 
   const handleSignOut = () => {
+    localStorage.removeItem("access_token");
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-    navigate("/login", {
-      replace: true,
-    });
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -55,40 +49,26 @@ function RequireAuth() {
   );
 }
 
-/* =========================================================
-   APP
-   ========================================================= */
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-
-        {/* ================= PUBLIC ROUTES ================= */}
+        {/* Public routes */}
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
         <Route
           path="/oauth/callback"
           element={<OAuthCallback />}
         />
 
-        <Route
-          path="/"
-          element={<WelcomePage />}
-        />
-
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-
-        {/* ================= PROTECTED ROUTES ================= */}
-
+        {/* Protected routes */}
         <Route element={<RequireAuth />}>
+          <Route
+            path="/dashboard"
+            element={<HomePage />}
+          />
 
           <Route
             path="/homepage"
@@ -100,45 +80,19 @@ function App() {
             element={<Notification />}
           />
 
-          <Route
-            path="/budget"
-            element={<Budget />}
-          />
-
-          <Route
-            path="/savings"
-            element={<Savings />}
-          />
-
-          <Route
-            path="/income"
-            element={<Income />}
-          />
-
-          <Route
-            path="/expense"
-            element={<Expense />}
-          />
-
-          <Route
-            path="/analytics"
-            element={<Analytics />}
-          />
-
-          <Route
-            path="/invoices"
-            element={<Invoices />}
-          />
-
+          <Route path="/budget" element={<Budget />} />
+          <Route path="/savings" element={<Savings />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/expense" element={<Expense />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/invoices" element={<Invoices />} />
         </Route>
 
-        {/* ================= FALLBACK ================= */}
-
+        {/* Unknown routes */}
         <Route
           path="*"
           element={<Navigate to="/" replace />}
         />
-
       </Routes>
     </BrowserRouter>
   );
