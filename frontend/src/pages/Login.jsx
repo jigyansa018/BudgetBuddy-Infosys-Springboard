@@ -47,14 +47,17 @@ function Login() {
       body.append("username", email);
       body.append("password", password);
 
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
 
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
 
-        body,
+        body: JSON.stringify({
+          username: email,
+          password: password
+        }),
       });
 
       const data = await response.json();

@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import googleIcon from "../assets/google.png";
 import githubIcon from "../assets/github.png";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function Register() {
   const [form, setForm] = useState({
