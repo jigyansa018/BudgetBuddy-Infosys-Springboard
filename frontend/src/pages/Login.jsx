@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Read the API URL from Vercel environment variables.
-// Removes any trailing "/" so we never create "//auth/login".
+// Read API URL from Vercel environment variables.
+// Remove trailing slashes so we never create //auth/login.
 const API_URL = (import.meta.env.VITE_API_URL || "")
   .trim()
   .replace(/\/+$/, "");
@@ -20,7 +20,6 @@ export default function Login() {
 
     setError("");
 
-    // Make sure the API URL exists.
     if (!API_URL) {
       setError(
         "API URL is not configured. Please check VITE_API_URL in Vercel."
@@ -38,22 +37,17 @@ export default function Login() {
       body.append("username", email);
       body.append("password", password);
 
-      // Login API request
       const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Accept: "application/json",
         },
-
         body: body.toString(),
       });
 
-      // Try to read JSON response
       const data = await response.json().catch(() => ({}));
 
-      // Handle failed response
       if (!response.ok) {
         const message =
           typeof data.detail === "string"
@@ -65,8 +59,6 @@ export default function Login() {
         throw new Error(message);
       }
 
-      // FastAPI normally returns access_token.
-      // token is included as a fallback in case your backend uses that name.
       const token = data.access_token || data.token;
 
       if (!token) {
@@ -75,20 +67,16 @@ export default function Login() {
         );
       }
 
-      // Save token.
-      // App.jsx / RequireAuth checks for token.
+      // Store token
       localStorage.setItem("token", token);
-
-      // Also keep access_token for compatibility with any existing code.
       localStorage.setItem("access_token", token);
 
-      // Save user information if the backend returns it.
+      // Store user if returned by backend
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
       }
 
-      // Login successful.
-      // /dashboard is a valid protected route in App.jsx.
+      // Login successful
       navigate("/dashboard", { replace: true });
     } catch (err) {
       console.error("Login error:", err);
@@ -107,7 +95,6 @@ export default function Login() {
     }
   };
 
-  // Google / GitHub login
   const handleSocialLogin = (provider) => {
     if (!API_URL) {
       setError(
@@ -133,7 +120,6 @@ export default function Login() {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Email */}
           <div className="form-group">
             <label htmlFor="login-email">Email</label>
 
@@ -148,7 +134,6 @@ export default function Login() {
             />
           </div>
 
-          {/* Password */}
           <div className="form-group">
             <label htmlFor="login-password">Password</label>
 
@@ -163,13 +148,11 @@ export default function Login() {
             />
           </div>
 
-          {/* Login button */}
           <button type="submit" disabled={loading}>
             {loading ? "Logging In..." : "Login"}
           </button>
         </form>
 
-        {/* Social login */}
         <div className="social-login">
           <button
             type="button"
@@ -186,7 +169,6 @@ export default function Login() {
           </button>
         </div>
 
-        {/* Register */}
         <p>
           Don't have an account?{" "}
           <Link to="/register">Register</Link>
