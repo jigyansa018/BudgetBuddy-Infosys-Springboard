@@ -71,7 +71,7 @@ FRONTEND_URL = os.getenv(
 
 BACKEND_URL = os.getenv(
     "BACKEND_URL",
-    "const API_URL = import.meta.env.VITE_API_URL;"
+    "http://localhost:8000"
 )
 
 # ============================================================
